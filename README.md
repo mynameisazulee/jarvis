@@ -1,14 +1,46 @@
-# Welcome to your CDK TypeScript project
+# Jarvis - AWS Infrastructure
 
-This is a blank project for CDK development with TypeScript.
+CDK project for deploying AWS infrastructure with EC2 instances.
 
-The `cdk.json` file tells the CDK Toolkit how to execute your app.
+## Prerequisites
 
-## Useful commands
+- AWS CLI configured with appropriate permissions
+- Node.js and npm installed
+- AWS CDK CLI installed (`npm install -g aws-cdk`)
+- SSH key pair `n8n-keypair.pem` in project root for EC2 access
 
-* `npm run build`   compile typescript to js
-* `npm run watch`   watch for changes and compile
-* `npm run test`    perform the jest unit tests
-* `npx cdk deploy`  deploy this stack to your default AWS account/region
-* `npx cdk diff`    compare deployed stack with current state
-* `npx cdk synth`   emits the synthesized CloudFormation template
+## Quick Commands
+
+### Deploy Infrastructure
+```bash
+./scripts/deploy.sh
+```
+
+### SSH into EC2 Instance
+```bash
+./scripts/ssh.sh
+```
+
+## Manual Commands
+
+* `npm run build`   - Compile TypeScript to JavaScript
+* `npm run deploy`  - Deploy stack to AWS (auto-approval)
+* `npm run destroy` - Destroy the stack
+* `npm run cdk`     - Run CDK commands
+
+## SSH Access
+
+Place your `n8n-keypair.pem` file in the project root directory and ensure proper permissions:
+```bash
+chmod 400 n8n-keypair.pem
+```
+
+Then use `./scripts/ssh.sh` to connect to your EC2 instance.
+
+## Infrastructure
+
+The stack deploys:
+- VPC with public/private subnets
+- EC2 instance (t3.micro) with Amazon Linux 2023
+- Security group with SSH and HTTP access
+- IAM role for SSM access

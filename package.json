@@ -5,11 +5,12 @@
     "jarvis": "bin/jarvis.js"
   },
   "scripts": {
-    "build": "tsc",
-    "watch": "tsc -w",
+    "build": "cd infra && tsc",
+    "watch": "cd infra && tsc -w",
     "test": "jest",
-    "cdk": "cdk",
-    "deploy": "npm run build && npm run cdk deploy --all"
+    "cdk": "cd infra && cdk",
+    "deploy": "cd infra && tsc && cdk deploy --require-approval never",
+    "destroy": "cd infra && cdk destroy"
   },
   "devDependencies": {
     "@types/jest": "^29.5.14",
