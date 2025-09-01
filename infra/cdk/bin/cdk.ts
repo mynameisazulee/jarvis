@@ -1,6 +1,9 @@
 #!/usr/bin/env node
 import * as cdk from 'aws-cdk-lib';
 import { N8nOnEc2Stack } from '../lib/stack-n8n-ec2';
+import * as dotenv from 'dotenv';
+
+dotenv.config();
 
 const app = new cdk.App();
 
